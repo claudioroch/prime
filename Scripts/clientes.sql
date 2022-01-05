@@ -47,6 +47,7 @@ CREATE TABLE `clientes` (
   `cliente_tel_ref2` varchar (20) DEFAULT NULL,
   `cliente_nome_ref3` varchar (50) DEFAULT NULL,
   `cliente_tel_ref3` varchar (20) DEFAULT NULL,
+  
   `cliente_cep` varchar(10) NOT NULL,
   `cliente_endereco` varchar(155) NOT NULL,
   `cliente_numero_endereco` varchar(20) NOT NULL,
