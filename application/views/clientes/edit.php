@@ -28,8 +28,8 @@
               <div class="form-group row">
                 <div class="col-md-3">
                   <label>Nome*</label>
-                  <input type="text" class="form-control form-control-user" name="cliente_nome" placeholder="Seu nome" value="<?php echo $cliente->cliente_nome; ?>">
-                  <?php echo form_error('cliente_nome', '<small class="form-text text-danger">','</small>'); ?>
+                  <input type="text" class="form-control form-control-user" name="cliente_nome" placeholder="Seu nome" value="<?php echo $cliente->cliente_nome_completo; ?>">
+                  <?php echo form_error('cliente_nome_completo', '<small class="form-text text-danger">','</small>'); ?>
                 </div>
                 <div class="col-md-3">
                   <label>Sobrenome*</label>

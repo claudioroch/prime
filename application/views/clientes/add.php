@@ -35,16 +35,16 @@
              
               <div class="form-group row mt-3">
                 <div class="col-md-3">
-                  <label class="pessoa_fisica">Nome*</label>
-                  <label class="pessoa_juridica">Razão social*</label>
-                  <input type="text" class="form-control form-control-user pessoa_fisica" name="cliente_nome" placeholder="Seu nome" value="<?php echo set_value('cliente_nome'); ?>">
-                  <?php echo form_error('cliente_nome', '<small class="form-text text-danger">','</small>'); ?>
-                </div>
-                <div class="col-md-3">
-                  <label class="pessoa_fisica">Sobrenome*</label>
-                  <label class="pessoa_juridica">Nome fantasia*</label>
-                  <input type="text" class="form-control form-control-user pessoa_fisica" name="cliente_sobrenome" placeholder="Seu sobrenome" value="<?php echo set_value('cliente_sobrenome'); ?>">
-                  <?php echo form_error('cliente_sobrenome', '<small class="form-text text-danger">','</small>'); ?>
+                  <div class="pessoa_fisica">
+                    <label>Nome*</label>
+                    <input type="text" class="form-control form-control-user pessoa_fisica" name="cliente_nome_completo" placeholder="Seu nome" value="<?php echo set_value('cliente_nome_completo'); ?>">
+                    <?php echo form_error('cliente_nome_completo', '<small class="form-text text-danger">','</small>'); ?>
+                  </div>
+                  <div class="pessoa_juridica">
+                    <label>Razão social*</label>
+                    <input type="text" class="form-control form-control-user pessoa_juridica" name="cliente_nome_completo" placeholder="Razão social" value="<?php echo set_value('cliente_nome_completo'); ?>">
+                    <?php echo form_error('cliente_nome_completo', '<small class="form-text text-danger">','</small>'); ?>
+                  </div>
                 </div>
                 <div class="col-md-2">
                   <label class="pessoa_fisica">Nascimento*</label>
@@ -68,7 +68,12 @@
                   <label class="pessoa_fisica">RG*</label>
                   <label class="pessoa_juridica">Inscrição estadual*</label>
                   <input type="text" class="form-control form-control-user pessoa_fisica" name="cliente_rg_ie" placeholder="RG do cliente" value="<?php echo set_value('cliente_rg_ie'); ?>">
-                                    <?php echo form_error('cliente_rg_ie', '<small class="form-text text-danger">','</small>'); ?>
+                  <?php echo form_error('cliente_rg_ie', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
+                <div class="col-md-3">
+                  <label>CNH</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_cnh" placeholder="Sua CNH" value="<?php echo set_value('cliente_cnh'); ?>">
+                  <?php echo form_error('cliente_cnh', '<small class="form-text text-danger">','</small>'); ?>
                 </div>
               </div>
               <div class="form-group row">
