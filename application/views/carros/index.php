@@ -1,4 +1,3 @@
-s
   <!-- Page Wrapper -->
   <div id="wrapper">
 
