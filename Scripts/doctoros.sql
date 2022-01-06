@@ -60,6 +60,30 @@ CREATE TABLE `clientes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
+--
+-- Estrutura da tabela `carros`
+--
+CREATE TABLE `carros` (
+  `carro_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `carro_data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `carro_placa` varchar (8) NOT NULL,
+  `carro_nome` varchar(20) NOT NULL,
+  `carro_modelo` varchar(20) NOT NULL,
+  `carro_combustivel` varchar (10) NOT NULL,
+  `carro_ano` varchar (4) NOT NULL,
+  `carro_cor` varchar(20) NOT NULL,
+  `carro_portas` varchar(1) NOT NULL,
+  `carro_acessorio` varchar(20) NOT NULL,
+  `carro_status` varchar(20) NOT NULL,
+  `carro_tanque` varchar(20) DEFAULT NULL,
+  `carro_vl_aluguel` varchar(10) DEFAULT NULL,
+  `carro_km` varchar (10) DEFAULT NULL,
+  `carro_ativo` tinyint(1) DEFAULT NULL,
+  `carro_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `fornecedores`
