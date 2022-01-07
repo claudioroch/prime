@@ -1,13 +1,13 @@
   <!-- Sidebar -->
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('/') ?>">
-  <div class="sidebar-brand-icon rotate-n-15">
-  <i class="fas fa-globe"></i>
-  </div>
-  <div class="sidebar-brand-text mx-3">Doctor OS</div>
-</a>
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('/') ?>">
+    <div class="sidebar-brand-icon rotate-n-15">
+    <i class="fas fa-globe"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">Doctor OS</div>
+  </a>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
@@ -48,15 +48,38 @@
 
 <!-- Heading -->
 <div class="sidebar-heading">
-  Configurações
+  Faturas
 </div>
 
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
+    <i class="fas fa-file-invoice-dollar"></i>
+      <span>Faturas</span>
+    </a>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Escolha uma opção:</h6>
+        <a title="Gerenciar fatura prime" class="collapse-item" href="<?php echo base_url('fatura_prime') ?>"><i class="fas fa-receipt text-gray-900"></i></i>&nbsp;Fatura Prime</a>
+        <a title="Gerenciar fatura empreendimentos" class="collapse-item" href="<?php echo base_url('fatura_empreendimentos') ?>"><i class="fas fa-receipt text-gray-900"></i></i>&nbsp;Fatura Empreendimentos</a>
+        <a title="Gerenciar fatura " class="collapse-item" href="<?php echo base_url('fatura_') ?>"><i class="fas fa-receipt text-gray-900"></i></i>&nbsp;Fatura</a>
+        
+      </div>
+    </div>
+</li>
+
+<hr class="sidebar-divider">
+
+<!-- Heading -->
+<div class="sidebar-heading">
+  Configurações
+</div>
+
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseTwo">
     <i class="fas fa-database"></i>
       <span>Configurações</span>
     </a>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Escolha uma opção:</h6>
         <a title="Gerenciar usuarios" class="collapse-item" href="<?php echo base_url('usuarios') ?>"><i class="fas fa-user-tie text-gray-900"></i>&nbsp;Usuários</a>
@@ -65,16 +88,7 @@
     </div>
 </li>
 
-<!-- Nav item -->
 
-
-<!-- <li class="nav-item">
-  <a title="Gerenciar Usuários" class="nav-link" href="<?php echo base_url('usuarios') ?>">
-  <i class="fas fa-users"></i><span>Usuários</span></a>
-  <a title="Gerenciar Dados do sistema" class="nav-link" href="<?php echo base_url('sistema') ?>">
-  <i class="fas fa-cogs"></i>
-    <span>Sistema</span></a>
-</li> -->
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
@@ -89,3 +103,4 @@
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
+  
