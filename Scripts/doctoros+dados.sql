@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 05-Jan-2022 às 22:45
+-- Tempo de geração: 07-Jan-2022 às 21:47
 -- Versão do servidor: 5.7.33
 -- versão do PHP: 7.4.19
 
@@ -20,6 +20,40 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `doctoros`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `carros`
+--
+
+CREATE TABLE `carros` (
+  `carro_id` int(11) NOT NULL,
+  `carro_data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `carro_placa` varchar(8) NOT NULL,
+  `carro_nome` varchar(20) NOT NULL,
+  `carro_modelo` varchar(20) NOT NULL,
+  `carro_combustivel` varchar(10) NOT NULL,
+  `carro_ano` varchar(4) NOT NULL,
+  `carro_cor` varchar(20) NOT NULL,
+  `carro_portas` varchar(1) NOT NULL,
+  `carro_acessorio` varchar(20) NOT NULL,
+  `carro_status` varchar(20) NOT NULL,
+  `carro_tanque` varchar(20) DEFAULT NULL,
+  `carro_vl_aluguel` varchar(10) DEFAULT NULL,
+  `carro_km` varchar(10) DEFAULT NULL,
+  `carro_ativo` tinyint(1) DEFAULT NULL,
+  `carro_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `carros`
+--
+
+INSERT INTO `carros` (`carro_id`, `carro_data_cadastro`, `carro_placa`, `carro_nome`, `carro_modelo`, `carro_combustivel`, `carro_ano`, `carro_cor`, `carro_portas`, `carro_acessorio`, `carro_status`, `carro_tanque`, `carro_vl_aluguel`, `carro_km`, `carro_ativo`, `carro_data_alteracao`) VALUES
+(1, '2022-01-06 19:09:32', 'QQG-3452', 'FORD K', '1.0', 'GASOLINA', '2019', 'PRETO', '0', 'COMPLETO', 'aluguado', '44', NULL, '123', 0, '2022-01-06 21:44:28'),
+(2, '2022-01-06 20:15:25', 'JPV9345', 'SIENA', '1.0', '', '2016', 'preto', '0', 'completo', 'disponivel', '44', NULL, '123', 0, '2022-01-06 21:43:45'),
+(3, '2022-01-06 20:55:21', 'JPV9346', 'FIAT', '1.0', '', '2016', 'preto', '0', 'som', 'alugado', '44', NULL, '123', 0, '2022-01-06 21:44:18');
 
 -- --------------------------------------------------------
 
@@ -60,35 +94,14 @@ CREATE TABLE `clientes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
---
--- Estrutura da tabela `carros`
---
-CREATE TABLE `carros` (
-  `carro_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `carro_data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `carro_placa` varchar (8) NOT NULL,
-  `carro_nome` varchar(20) NOT NULL,
-  `carro_modelo` varchar(20) NOT NULL,
-  `carro_combustivel` varchar (10) NOT NULL,
-  `carro_ano` varchar (4) NOT NULL,
-  `carro_cor` varchar(20) NOT NULL,
-  `carro_portas` varchar(1) NOT NULL,
-  `carro_acessorio` varchar(20) NOT NULL,
-  `carro_status` varchar(20) NOT NULL,
-  `carro_tanque` varchar(20) DEFAULT NULL,
-  `carro_vl_aluguel` varchar(10) DEFAULT NULL,
-  `carro_km` varchar (10) DEFAULT NULL,
-  `carro_ativo` tinyint(1) DEFAULT NULL,
-  `carro_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
--- --------------------------------------------------------
 --
--- Estrutura da tabela Fatura Prime
+-- Estrutura da tabela `fatura_prime`
+--
+
 CREATE TABLE `fatura_prime` (
-  `fatura_prime_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `fatura_prime_cliente_id` int (11) NOT NULL,
+  `fatura_prime_id` int(11) NOT NULL,
+  `fatura_prime_cliente_id` int(11) NOT NULL,
   `fatura_prime_endereco` varchar(155) NOT NULL,
   `fatura_prime_telefone` varchar(20) NOT NULL,
   `fatura_prime_celular` varchar(20) NOT NULL,
@@ -101,21 +114,13 @@ CREATE TABLE `fatura_prime` (
   `fatura_prime_estado` varchar(2) NOT NULL,
   `fatura_prime_vencimento` date NOT NULL,
   `fatura_prime_emissao` date NOT NULL,
-  `fatura_prime_valor` varchar (10) NOT NULL,
-  `fatura_prime_descricao` varchar (500) NOT NULL,
-  `fatura_prime_obs` varchar (255) DEFAULT NULL,
+  `fatura_prime_valor` varchar(10) NOT NULL,
+  `fatura_prime_descricao` varchar(500) NOT NULL,
+  `fatura_prime_obs` varchar(255) DEFAULT NULL,
   `fatura_prime_ativo` tinyint(1) DEFAULT NULL,
-  `fatura_prime_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
+  `fatura_prime_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `fatura_prime`
-  ADD KEY `fk_fatura_prime_cliente_id` (`fatura_prime_cliente_id`);
-  
-
-  ALTER TABLE `fatura_prime`
-    ADD CONSTRAINT `fk_fatura_prime_cliente_id` FOREIGN KEY (`fatura_prime_cliente_id`) REFERENCES `clientes` (`cliente_id`);
-  COMMIT;
---
 -- --------------------------------------------------------
 
 --
@@ -274,7 +279,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$10$.vH2OUCvjm0XEd0fx.YEVenJeE3TeXIlsGIuHQQofrUec7tEb2BH.', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1641419361, 1, 'Admin-2', 'istrator-2', 'ADMIN', '0');
+(1, '127.0.0.1', 'administrator', '$2y$10$.vH2OUCvjm0XEd0fx.YEVenJeE3TeXIlsGIuHQQofrUec7tEb2BH.', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1641553597, 1, 'Admin-2', 'istrator-2', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
@@ -336,10 +341,23 @@ INSERT INTO `vendedores` (`vendedor_id`, `vendedor_codigo`, `vendedor_data_cadas
 --
 
 --
+-- Índices para tabela `carros`
+--
+ALTER TABLE `carros`
+  ADD PRIMARY KEY (`carro_id`);
+
+--
 -- Índices para tabela `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`cliente_id`);
+
+--
+-- Índices para tabela `fatura_prime`
+--
+ALTER TABLE `fatura_prime`
+  ADD PRIMARY KEY (`fatura_prime_id`),
+  ADD KEY `fk_fatura_prime_cliente_id` (`fatura_prime_cliente_id`);
 
 --
 -- Índices para tabela `fornecedores`
@@ -401,10 +419,22 @@ ALTER TABLE `vendedores`
 --
 
 --
+-- AUTO_INCREMENT de tabela `carros`
+--
+ALTER TABLE `carros`
+  MODIFY `carro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
   MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `fatura_prime`
+--
+ALTER TABLE `fatura_prime`
+  MODIFY `fatura_prime_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedores`
@@ -457,6 +487,12 @@ ALTER TABLE `vendedores`
 --
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `fatura_prime`
+--
+ALTER TABLE `fatura_prime`
+  ADD CONSTRAINT `fk_fatura_prime_cliente_id` FOREIGN KEY (`fatura_prime_cliente_id`) REFERENCES `clientes` (`cliente_id`);
 
 --
 -- Limitadores para a tabela `users_groups`
