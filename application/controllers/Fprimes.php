@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('Ação não permitida');
 
-class Fatura_Prime extends CI_Controller{
+class Fprimes extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
@@ -14,7 +14,7 @@ class Fatura_Prime extends CI_Controller{
 
     public function index(){
         $data = array(
-            'titulo'=> 'faturas_prime cadastrados',
+            'titulo'=> 'Fatura Prime cadastradas',
             'styles' => array(
                 'vendor/datatables/dataTables.bootstrap4.min.css',   
                ),
@@ -24,15 +24,18 @@ class Fatura_Prime extends CI_Controller{
                    'vendor/datatables/dataTables.bootstrap4.min.js',
                    'vendor/datatables/app.js',
                ),
-               'faturas_prime'=> $this->Core_model->get_all('faturas_prime'),
+               'fprimes'=> $this->Core_model->get_all('fprimes'),
         );
+        echo '<pre>';
+        print_r($data['fprimes']);
+        exit();
        
         $this->load->view('layout/header', $data);
         $this->load->view('faturas_prime/index');
         $this->load->view('layout/footer');
     }
 
-    public function add(){
+   /*  public function add(){
 
         $this->form_validation->set_rules('fatura_prime_placa', '', 'trim|required|max_length[8]|is_unique[faturas_prime.fatura_prime_placa]');
         $this->form_validation->set_rules('fatura_prime_nome', '', 'trim|required|max_length[20]');
@@ -162,6 +165,6 @@ class Fatura_Prime extends CI_Controller{
            $this->Core_model->delete('faturas_prime', array('fatura_prime_id' => $fatura_prime_id) );
            redirect('faturas_prime');
        }
-    }
+    } */
 
 }

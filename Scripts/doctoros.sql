@@ -1,25 +1,58 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
--- https://www.phpmyadmin.net/
+-- version 4.2.11
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Tempo de geração: 05-Jan-2022 às 22:45
--- Versão do servidor: 5.7.33
--- versão do PHP: 7.4.19
+-- Host: 127.0.0.1
+-- Generation Time: 10-Jan-2022 às 00:10
+-- Versão do servidor: 5.6.21
+-- PHP Version: 5.5.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Banco de dados: `doctoros`
+-- Database: `doctoros`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `carros`
+--
+
+CREATE TABLE IF NOT EXISTS `carros` (
+`carro_id` int(11) NOT NULL,
+  `carro_data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `carro_placa` varchar(8) NOT NULL,
+  `carro_nome` varchar(20) NOT NULL,
+  `carro_modelo` varchar(20) NOT NULL,
+  `carro_combustivel` varchar(10) NOT NULL,
+  `carro_ano` varchar(4) NOT NULL,
+  `carro_cor` varchar(20) NOT NULL,
+  `carro_portas` varchar(1) NOT NULL,
+  `carro_acessorio` varchar(20) NOT NULL,
+  `carro_status` varchar(20) NOT NULL,
+  `carro_tanque` varchar(20) DEFAULT NULL,
+  `carro_vl_aluguel` varchar(10) DEFAULT NULL,
+  `carro_km` varchar(10) DEFAULT NULL,
+  `carro_ativo` tinyint(1) DEFAULT NULL,
+  `carro_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `carros`
+--
+
+INSERT INTO `carros` (`carro_id`, `carro_data_cadastro`, `carro_placa`, `carro_nome`, `carro_modelo`, `carro_combustivel`, `carro_ano`, `carro_cor`, `carro_portas`, `carro_acessorio`, `carro_status`, `carro_tanque`, `carro_vl_aluguel`, `carro_km`, `carro_ativo`, `carro_data_alteracao`) VALUES
+(1, '2022-01-06 19:09:32', 'QQG-3452', 'FORD K', '1.0', 'GASOLINA', '2019', 'PRETO', '0', 'COMPLETO', 'aluguado', '44', NULL, '123', 0, '2022-01-06 21:44:28'),
+(2, '2022-01-06 20:15:25', 'JPV9345', 'SIENA', '1.0', '', '2016', 'preto', '0', 'completo', 'disponivel', '44', NULL, '123', 0, '2022-01-06 21:43:45'),
+(3, '2022-01-06 20:55:21', 'JPV9346', 'FIAT', '1.0', '', '2016', 'preto', '0', 'som', 'alugado', '44', NULL, '123', 0, '2022-01-06 21:44:18');
 
 -- --------------------------------------------------------
 
@@ -27,11 +60,11 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `clientes`
 --
 
-CREATE TABLE `clientes` (
-  `cliente_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `clientes` (
+`cliente_id` int(11) NOT NULL,
   `cliente_data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `cliente_tipo` tinyint(1) DEFAULT NULL,
-  `cliente_nome_completo` varchar(145) NOT NULL,
+  `cliente_nome` varchar(145) NOT NULL,
   `cliente_data_nascimento` date NOT NULL,
   `cliente_cpf_cnpj` varchar(20) NOT NULL,
   `cliente_rg_ie` varchar(20) NOT NULL,
@@ -40,7 +73,7 @@ CREATE TABLE `clientes` (
   `cliente_celular` varchar(20) NOT NULL,
   `cliente_CNH` varchar(15) DEFAULT NULL,
   `cliente_validade` date DEFAULT NULL,
-  `cliente_emisso` varchar(10) DEFAULT NULL,
+  `cliente_emissor` varchar(10) DEFAULT NULL,
   `cliente_nome_ref1` varchar(50) DEFAULT NULL,
   `cliente_tel_ref1` varchar(20) DEFAULT NULL,
   `cliente_nome_ref2` varchar(50) DEFAULT NULL,
@@ -57,73 +90,24 @@ CREATE TABLE `clientes` (
   `cliente_ativo` tinyint(1) NOT NULL,
   `cliente_obs` tinytext,
   `cliente_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 --
--- Estrutura da tabela `carros`
+-- Extraindo dados da tabela `clientes`
 --
-CREATE TABLE `carros` (
-  `carro_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `carro_data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `carro_placa` varchar (8) NOT NULL,
-  `carro_nome` varchar(20) NOT NULL,
-  `carro_modelo` varchar(20) NOT NULL,
-  `carro_combustivel` varchar (10) NOT NULL,
-  `carro_ano` varchar (4) NOT NULL,
-  `carro_cor` varchar(20) NOT NULL,
-  `carro_portas` varchar(1) NOT NULL,
-  `carro_acessorio` varchar(20) NOT NULL,
-  `carro_status` varchar(20) NOT NULL,
-  `carro_tanque` varchar(20) DEFAULT NULL,
-  `carro_vl_aluguel` varchar(10) DEFAULT NULL,
-  `carro_km` varchar (10) DEFAULT NULL,
-  `carro_ativo` tinyint(1) DEFAULT NULL,
-  `carro_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `clientes` (`cliente_id`, `cliente_data_cadastro`, `cliente_tipo`, `cliente_nome`, `cliente_data_nascimento`, `cliente_cpf_cnpj`, `cliente_rg_ie`, `cliente_email`, `cliente_telefone`, `cliente_celular`, `cliente_CNH`, `cliente_validade`, `cliente_emissor`, `cliente_nome_ref1`, `cliente_tel_ref1`, `cliente_nome_ref2`, `cliente_tel_ref2`, `cliente_nome_ref3`, `cliente_tel_ref3`, `cliente_cep`, `cliente_endereco`, `cliente_numero_endereco`, `cliente_bairro`, `cliente_complemento`, `cliente_cidade`, `cliente_estado`, `cliente_ativo`, `cliente_obs`, `cliente_data_alteracao`) VALUES
+(1, '2022-01-09 19:20:10', 2, 'cr soluções', '2013-11-29', '15.293.787/0001-02', 'Mg45698852', 'doutoresdainformatica@yahoo.com.br', '(38) 3084-3087', '(38) 99123-6236', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '39400-174', 'AVENIDA  PRESIDENTE  KENNEDY', '342', 'edgar pereira', '', 'Montes Claros', 'MG', 0, '', '2022-01-09 19:20:10'),
+(2, '2022-01-09 21:19:57', 1, 'Mirin', '2021-11-10', '100.341.700-06', '185917999', 'teste@teste.com', '(38) 3214-5879', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '39400-174', 'Rua a', '354', 'EDGAR PEREIRA', '', 'Montes Claros', 'MG', 0, '', '2022-01-09 21:19:57');
 
--- --------------------------------------------------------
---
--- Estrutura da tabela Fatura Prime
-CREATE TABLE `fatura_prime` (
-  `fatura_prime_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `fatura_prime_cliente_id` int (11) NOT NULL,
-  `fatura_prime_endereco` varchar(155) NOT NULL,
-  `fatura_prime_telefone` varchar(20) NOT NULL,
-  `fatura_prime_celular` varchar(20) NOT NULL,
-  `fatura_prime_cpf_cnpj` varchar(20) NOT NULL,
-  `fatura_prime_forma_pag` varchar(20) NOT NULL,
-  `fatura_prime_numero_endereco` varchar(20) NOT NULL,
-  `fatura_prime_bairro` varchar(45) NOT NULL,
-  `fatura_prime_complemento` varchar(145) NOT NULL,
-  `fatura_prime_cidade` varchar(105) NOT NULL,
-  `fatura_prime_estado` varchar(2) NOT NULL,
-  `fatura_prime_vencimento` date NOT NULL,
-  `fatura_prime_emissao` date NOT NULL,
-  `fatura_prime_valor` varchar (10) NOT NULL,
-  `fatura_prime_descricao` varchar (500) NOT NULL,
-  `fatura_prime_obs` varchar (255) DEFAULT NULL,
-  `fatura_prime_ativo` tinyint(1) DEFAULT NULL,
-  `fatura_prime_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-ALTER TABLE `fatura_prime`
-  ADD KEY `fk_fatura_prime_cliente_id` (`fatura_prime_cliente_id`);
-  
-
-  ALTER TABLE `fatura_prime`
-    ADD CONSTRAINT `fk_fatura_prime_cliente_id` FOREIGN KEY (`fatura_prime_cliente_id`) REFERENCES `clientes` (`cliente_id`);
-  COMMIT;
---
 -- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `fornecedores`
 --
 
-CREATE TABLE `fornecedores` (
-  `fornecedor_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `fornecedores` (
+`fornecedor_id` int(11) NOT NULL,
   `fornecedor_data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `fornecedor_razao` varchar(200) DEFAULT NULL,
   `fornecedor_nome_fantasia` varchar(145) DEFAULT NULL,
@@ -143,7 +127,7 @@ CREATE TABLE `fornecedores` (
   `fornecedor_ativo` tinyint(1) DEFAULT NULL,
   `fornecedor_obs` tinytext,
   `fornecedor_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `fornecedores`
@@ -155,14 +139,42 @@ INSERT INTO `fornecedores` (`fornecedor_id`, `fornecedor_data_cadastro`, `fornec
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `fprimes`
+--
+
+CREATE TABLE IF NOT EXISTS `fprimes` (
+`fatura_prime_id` int(11) NOT NULL,
+  `fatura_prime_cliente_id` int(11) NOT NULL,
+  `fatura_prime_endereco` varchar(155) NOT NULL,
+  `fatura_prime_telefone` varchar(20) NOT NULL,
+  `fatura_prime_celular` varchar(20) NOT NULL,
+  `fatura_prime_cpf_cnpj` varchar(20) NOT NULL,
+  `fatura_prime_forma_pag` varchar(20) NOT NULL,
+  `fatura_prime_numero_endereco` varchar(20) NOT NULL,
+  `fatura_prime_bairro` varchar(45) NOT NULL,
+  `fatura_prime_complemento` varchar(145) NOT NULL,
+  `fatura_prime_cidade` varchar(105) NOT NULL,
+  `fatura_prime_estado` varchar(2) NOT NULL,
+  `fatura_prime_vencimento` date NOT NULL,
+  `fatura_prime_emissao` date NOT NULL,
+  `fatura_prime_valor` varchar(10) NOT NULL,
+  `fatura_prime_descricao` varchar(500) NOT NULL,
+  `fatura_prime_obs` varchar(255) DEFAULT NULL,
+  `fatura_prime_ativo` tinyint(1) DEFAULT NULL,
+  `fatura_prime_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `groups`
 --
 
-CREATE TABLE `groups` (
-  `id` mediumint(8) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `groups` (
+`id` mediumint(8) unsigned NOT NULL,
   `name` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `groups`
@@ -178,11 +190,11 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 -- Estrutura da tabela `login_attempts`
 --
 
-CREATE TABLE `login_attempts` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `login_attempts` (
+`id` int(11) unsigned NOT NULL,
   `ip_address` varchar(45) NOT NULL,
   `login` varchar(100) NOT NULL,
-  `time` int(11) UNSIGNED DEFAULT NULL
+  `time` int(11) unsigned DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -191,14 +203,14 @@ CREATE TABLE `login_attempts` (
 -- Estrutura da tabela `servicos`
 --
 
-CREATE TABLE `servicos` (
-  `servico_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `servicos` (
+`servico_id` int(11) NOT NULL,
   `servico_nome` varchar(145) DEFAULT NULL,
   `servico_preco` varchar(15) DEFAULT NULL,
   `servico_descricao` tinytext,
   `servico_ativo` tinyint(1) DEFAULT NULL,
   `servico_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `servicos`
@@ -215,8 +227,8 @@ INSERT INTO `servicos` (`servico_id`, `servico_nome`, `servico_preco`, `servico_
 -- Estrutura da tabela `sistema`
 --
 
-CREATE TABLE `sistema` (
-  `sistema_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sistema` (
+`sistema_id` int(11) NOT NULL,
   `sistema_razao_social` varchar(145) DEFAULT NULL,
   `sistema_nome_fantasia` varchar(145) DEFAULT NULL,
   `sistema_cnpj` varchar(25) DEFAULT NULL,
@@ -232,7 +244,7 @@ CREATE TABLE `sistema` (
   `sistema_estado` varchar(2) DEFAULT NULL,
   `sistema_txt_ordem_servico` tinytext,
   `sistema_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `sistema`
@@ -247,8 +259,8 @@ INSERT INTO `sistema` (`sistema_id`, `sistema_razao_social`, `sistema_nome_fanta
 -- Estrutura da tabela `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+`id` int(11) unsigned NOT NULL,
   `ip_address` varchar(45) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -257,24 +269,24 @@ CREATE TABLE `users` (
   `activation_code` varchar(255) DEFAULT NULL,
   `forgotten_password_selector` varchar(255) DEFAULT NULL,
   `forgotten_password_code` varchar(255) DEFAULT NULL,
-  `forgotten_password_time` int(11) UNSIGNED DEFAULT NULL,
+  `forgotten_password_time` int(11) unsigned DEFAULT NULL,
   `remember_selector` varchar(255) DEFAULT NULL,
   `remember_code` varchar(255) DEFAULT NULL,
-  `created_on` int(11) UNSIGNED NOT NULL,
-  `last_login` int(11) UNSIGNED DEFAULT NULL,
-  `active` tinyint(1) UNSIGNED DEFAULT NULL,
+  `created_on` int(11) unsigned NOT NULL,
+  `last_login` int(11) unsigned DEFAULT NULL,
+  `active` tinyint(1) unsigned DEFAULT NULL,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$10$.vH2OUCvjm0XEd0fx.YEVenJeE3TeXIlsGIuHQQofrUec7tEb2BH.', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1641419361, 1, 'Admin-2', 'istrator-2', 'ADMIN', '0');
+(1, '127.0.0.1', 'administrator', '$2y$10$.vH2OUCvjm0XEd0fx.YEVenJeE3TeXIlsGIuHQQofrUec7tEb2BH.', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1641755333, 1, 'Admin-2', 'istrator-2', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
@@ -282,11 +294,11 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activ
 -- Estrutura da tabela `users_groups`
 --
 
-CREATE TABLE `users_groups` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
-  `group_id` mediumint(8) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `users_groups` (
+`id` int(11) unsigned NOT NULL,
+  `user_id` int(11) unsigned NOT NULL,
+  `group_id` mediumint(8) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `users_groups`
@@ -301,8 +313,8 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 -- Estrutura da tabela `vendedores`
 --
 
-CREATE TABLE `vendedores` (
-  `vendedor_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `vendedores` (
+`vendedor_id` int(11) NOT NULL,
   `vendedor_codigo` varchar(10) NOT NULL,
   `vendedor_data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `vendedor_nome_completo` varchar(145) NOT NULL,
@@ -321,7 +333,7 @@ CREATE TABLE `vendedores` (
   `vendedor_ativo` tinyint(1) DEFAULT NULL,
   `vendedor_obs` tinytext,
   `vendedor_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `vendedores`
@@ -332,139 +344,150 @@ INSERT INTO `vendedores` (`vendedor_id`, `vendedor_codigo`, `vendedor_data_cadas
 (2, '03841956', '2020-01-29 22:22:27', 'Sara Betina', '582.071.790-23', '25.287.429-8', '', '(41) 88884-4444', 'sara@gmail.com', '80540-120', 'Rua das vendas', '45', '', 'Centro', 'Joinville', 'SC', 1, '', '2021-12-20 00:07:18');
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices para tabela `clientes`
+-- Indexes for table `carros`
+--
+ALTER TABLE `carros`
+ ADD PRIMARY KEY (`carro_id`);
+
+--
+-- Indexes for table `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`cliente_id`);
+ ADD PRIMARY KEY (`cliente_id`);
 
 --
--- Índices para tabela `fornecedores`
+-- Indexes for table `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  ADD PRIMARY KEY (`fornecedor_id`);
+ ADD PRIMARY KEY (`fornecedor_id`);
 
 --
--- Índices para tabela `groups`
+-- Indexes for table `fprimes`
+--
+ALTER TABLE `fprimes`
+ ADD PRIMARY KEY (`fatura_prime_id`), ADD KEY `fk_fatura_prime_cliente_id` (`fatura_prime_cliente_id`);
+
+--
+-- Indexes for table `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `login_attempts`
+-- Indexes for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `servicos`
+-- Indexes for table `servicos`
 --
 ALTER TABLE `servicos`
-  ADD PRIMARY KEY (`servico_id`);
+ ADD PRIMARY KEY (`servico_id`);
 
 --
--- Índices para tabela `sistema`
+-- Indexes for table `sistema`
 --
 ALTER TABLE `sistema`
-  ADD PRIMARY KEY (`sistema_id`);
+ ADD PRIMARY KEY (`sistema_id`);
 
 --
--- Índices para tabela `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uc_email` (`email`),
-  ADD UNIQUE KEY `uc_activation_selector` (`activation_selector`),
-  ADD UNIQUE KEY `uc_forgotten_password_selector` (`forgotten_password_selector`),
-  ADD UNIQUE KEY `uc_remember_selector` (`remember_selector`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `uc_email` (`email`), ADD UNIQUE KEY `uc_activation_selector` (`activation_selector`), ADD UNIQUE KEY `uc_forgotten_password_selector` (`forgotten_password_selector`), ADD UNIQUE KEY `uc_remember_selector` (`remember_selector`);
 
 --
--- Índices para tabela `users_groups`
+-- Indexes for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
-  ADD KEY `fk_users_groups_users1_idx` (`user_id`),
-  ADD KEY `fk_users_groups_groups1_idx` (`group_id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`), ADD KEY `fk_users_groups_users1_idx` (`user_id`), ADD KEY `fk_users_groups_groups1_idx` (`group_id`);
 
 --
--- Índices para tabela `vendedores`
+-- Indexes for table `vendedores`
 --
 ALTER TABLE `vendedores`
-  ADD PRIMARY KEY (`vendedor_id`);
+ ADD PRIMARY KEY (`vendedor_id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `clientes`
+-- AUTO_INCREMENT for table `carros`
+--
+ALTER TABLE `carros`
+MODIFY `carro_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT;
-
+MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT de tabela `fornecedores`
+-- AUTO_INCREMENT for table `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `fornecedor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+MODIFY `fornecedor_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de tabela `groups`
+-- AUTO_INCREMENT for table `fprimes`
+--
+ALTER TABLE `fprimes`
+MODIFY `fatura_prime_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+MODIFY `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT de tabela `login_attempts`
+-- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de tabela `servicos`
+-- AUTO_INCREMENT for table `servicos`
 --
 ALTER TABLE `servicos`
-  MODIFY `servico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+MODIFY `servico_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT de tabela `sistema`
+-- AUTO_INCREMENT for table `sistema`
 --
 ALTER TABLE `sistema`
-  MODIFY `sistema_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+MODIFY `sistema_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de tabela `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de tabela `users_groups`
+-- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT de tabela `vendedores`
+-- AUTO_INCREMENT for table `vendedores`
 --
 ALTER TABLE `vendedores`
-  MODIFY `vendedor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY `vendedor_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- Constraints for dumped tables
+--
 
 --
--- Restrições para despejos de tabelas
+-- Limitadores para a tabela `fprimes`
 --
+ALTER TABLE `fprimes`
+ADD CONSTRAINT `fk_fatura_prime_cliente_id` FOREIGN KEY (`fatura_prime_cliente_id`) REFERENCES `clientes` (`cliente_id`);
 
 --
 -- Limitadores para a tabela `users_groups`
 --
 ALTER TABLE `users_groups`
-  ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-COMMIT;
+ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

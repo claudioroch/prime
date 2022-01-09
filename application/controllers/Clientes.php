@@ -34,8 +34,10 @@ class Clientes extends CI_Controller{
 
     public function add(){
 
-        $this->form_validation->set_rules('cliente_nome_completo', '', 'trim|required|min_length[4]|max_length[45]');
+        $this->form_validation->set_rules('cliente_nome', '', 'trim|required|min_length[4]|max_length[45]');
+        /* $this->form_validation->set_rules('cliente_sobrenome', '', 'trim|required|min_length[4]|max_length[150]'); */
         $this->form_validation->set_rules('cliente_data_nascimento', '', 'required');
+
         $cliente_tipo = $this->input->post('cliente_tipo');
         if($cliente_tipo == 1){
             $this->form_validation->set_rules('cliente_cpf', '', 'trim|required|exact_length[14]|is_unique[clientes.cliente_cpf_cnpj]|callback_valida_cpf');
@@ -53,15 +55,6 @@ class Clientes extends CI_Controller{
             $this->form_validation->set_rules('cliente_celular', '', 'trim|required|max_length[15]|is_unique[clientes.cliente_celular]');
         }
 
-        $this->form_validation->set_rules('cliente_CNH', '', 'trim|max_length[15]|is_unique[clientes.cliente_cnh]');
-        $this->form_validation->set_rules('cliente_validade', '');
-        $this->form_validation->set_rules('cliente_emisso', '', 'trim|max_length[10]');
-        $this->form_validation->set_rules('cliente_nome_ref1', '', 'trim|max_length[50]');
-        $this->form_validation->set_rules('cliente_tel_ref1', '', 'trim|max_length[20]');
-        $this->form_validation->set_rules('cliente_nome_ref2', '', 'trim|max_length[50]');
-        $this->form_validation->set_rules('cliente_tel_ref2', '', 'trim|max_length[20]');
-        $this->form_validation->set_rules('cliente_nome_ref3', '', 'trim|max_length[50]');
-        $this->form_validation->set_rules('cliente_tel_ref3', '', 'trim|max_length[20]');
         $this->form_validation->set_rules('cliente_cep', '', 'trim|required|exact_length[9]');
         $this->form_validation->set_rules('cliente_endereco', '', 'trim|required|max_length[155]');
         $this->form_validation->set_rules('cliente_numero_endereco', '', 'trim|max_length[20]');
@@ -74,23 +67,16 @@ class Clientes extends CI_Controller{
         
         if ($this->form_validation->run()){
 
+        
             $data = elements(
                 array(
-                    'cliente_nome_completo',
+                    'cliente_nome',
+                    /* 'cliente_sobrenome', */
                     'cliente_data_nascimento',                        
                     'cliente_rg_ie',
                     'cliente_email',
                     'cliente_telefone',
                     'cliente_celular',
-                    'cliente_CNH',
-                    'cliente_validade',
-                    'cliente_emisso',
-                    'cliente_nome_ref1',
-                    'cliente_tel_ref1',
-                    'cliente_nome_ref2',
-                    'cliente_tel_ref2',
-                    'cliente_nome_ref3',
-                    'cliente_tel_ref3',
                     'cliente_cep',
                     'cliente_endereco',
                     'cliente_numero_endereco',
@@ -143,7 +129,7 @@ class Clientes extends CI_Controller{
          redirect('clientes');
         }else{
                
-            $this->form_validation->set_rules('cliente_nome_completo', '', 'trim|required|min_length[4]|max_length[45]');
+            $this->form_validation->set_rules('cliente_nome', '', 'trim|required|min_length[4]|max_length[45]');
             $this->form_validation->set_rules('cliente_data_nascimento', '', 'required');
 
             $cliente_tipo = $this->input->post('cliente_tipo');
@@ -163,16 +149,6 @@ class Clientes extends CI_Controller{
                 $this->form_validation->set_rules('cliente_celular', '', 'trim|required|max_length[15]|callback_check_celular');
             }
 
-            $this->form_validation->set_rules('cliente_CNH', '', 'trim|max_length[15]');
-            $this->form_validation->set_rules('cliente_validade', '');
-            $this->form_validation->set_rules('cliente_emisso', '', 'trim|max_length[10]');
-            $this->form_validation->set_rules('cliente_nome_ref1', '', 'trim|max_length[50]');
-            $this->form_validation->set_rules('cliente_tel_ref1', '', 'trim|max_length[20]');
-            $this->form_validation->set_rules('cliente_nome_ref2', '', 'trim|max_length[50]');
-            $this->form_validation->set_rules('cliente_tel_ref2', '', 'trim|max_length[20]');
-            $this->form_validation->set_rules('cliente_nome_ref3', '', 'trim|max_length[50]');
-            $this->form_validation->set_rules('cliente_tel_ref3', '', 'trim|max_length[20]');
-
             $this->form_validation->set_rules('cliente_cep', '', 'trim|required|exact_length[9]');
             $this->form_validation->set_rules('cliente_endereco', '', 'trim|required|max_length[155]');
             $this->form_validation->set_rules('cliente_numero_endereco', '', 'trim|max_length[20]');
@@ -188,15 +164,16 @@ class Clientes extends CI_Controller{
             
                 $data = elements(
                     array(
-                        'cliente_nome_completo',
-                        'cliente_data_nascimento',                        
+                        'cliente_nome',
+                        'cliente_data_nascimento',
+                        'cliente_cpf_cnpj',
                         'cliente_rg_ie',
                         'cliente_email',
                         'cliente_telefone',
                         'cliente_celular',
                         'cliente_CNH',
                         'cliente_validade',
-                        'cliente_emisso',
+                        'cliente_emissor',
                         'cliente_nome_ref1',
                         'cliente_tel_ref1',
                         'cliente_nome_ref2',
@@ -213,6 +190,7 @@ class Clientes extends CI_Controller{
                         'cliente_ativo',
                         'cliente_obs',
                         'cliente_tipo',
+                    
 
                     ), $this->input->post()
                 );

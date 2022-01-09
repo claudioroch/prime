@@ -59,7 +59,7 @@
     <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Escolha uma opção:</h6>
-        <a title="Gerenciar fatura prime" class="collapse-item" href="<?php echo base_url('fatura_prime') ?>"><i class="fas fa-receipt text-gray-900"></i></i>&nbsp;Fatura Prime</a>
+        <a title="Gerenciar fatura prime" class="collapse-item" href="<?php echo base_url('fprimes') ?>"><i class="fas fa-receipt text-gray-900"></i></i>&nbsp;Fatura Prime</a>
         <a title="Gerenciar fatura empreendimentos" class="collapse-item" href="<?php echo base_url('fatura_empreendimentos') ?>"><i class="fas fa-receipt text-gray-900"></i></i>&nbsp;Fatura Empreendimentos</a>
         <a title="Gerenciar fatura " class="collapse-item" href="<?php echo base_url('fatura_') ?>"><i class="fas fa-receipt text-gray-900"></i></i>&nbsp;Fatura</a>
         

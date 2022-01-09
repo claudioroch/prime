@@ -28,13 +28,8 @@
               <div class="form-group row">
                 <div class="col-md-3">
                   <label>Nome*</label>
-                  <input type="text" class="form-control form-control-user" name="cliente_nome" placeholder="Seu nome" value="<?php echo $cliente->cliente_nome_completo; ?>">
-                  <?php echo form_error('cliente_nome_completo', '<small class="form-text text-danger">','</small>'); ?>
-                </div>
-                <div class="col-md-3">
-                  <label>Sobrenome*</label>
-                  <input type="text" class="form-control form-control-user" name="cliente_sobrenome" placeholder="Seu sobrenome" value="<?php echo $cliente->cliente_sobrenome; ?>">
-                  <?php echo form_error('cliente_sobrenome', '<small class="form-text text-danger">','</small>'); ?>
+                  <input type="text" class="form-control form-control-user" name="cliente_nome" placeholder="Seu nome" value="<?php echo $cliente->cliente_nome; ?>">
+                  <?php echo form_error('cliente_nome', '<small class="form-text text-danger">','</small>'); ?>
                 </div>
                 <div class="col-md-2">
                   <?php if($cliente->cliente_tipo == 1): ?>
@@ -67,13 +62,27 @@
                     <?php echo form_error('cliente_ie', '<small class="form-text text-danger">','</small>'); ?>
                   <?php endif; ?>                   
                 </div>
-                
-              </div>
-              <div class="form-group row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <label>E-mail*</label>
                   <input type="email" class="form-control form-control-user" name="cliente_email" placeholder="Seu e-mail" value="<?php echo $cliente->cliente_email; ?>">
                   <?php echo form_error('cliente_email', '<small class="form-text text-danger">','</small>'); ?>
+                </div>                
+              </div>
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label>CNH</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_CNH" placeholder="CNH do cliente" value="<?php echo $cliente->cliente_CNH; ?>">
+                  <?php echo form_error('cliente_CNH', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
+                <div class="col-md-2">
+                  <label>Emissor</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_emissor" placeholder="Emissor da CNH" value="<?php echo $cliente->cliente_emissor; ?>">
+                  <?php echo form_error('cliente_emissor', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
+                <div class="col-md-2">
+                  <label>Validade</label>
+                  <input type="date" class="form-control form-control-user-date" name="cliente_validade" placeholder="Validade da CNH" value="<?php echo $cliente->cliente_validade; ?>">
+                  <?php echo form_error('cliente_validade', '<small class="form-text text-danger">','</small>'); ?>
                 </div>
                 <div class="col-md-2">
                   <label>Telefone</label>
@@ -86,17 +95,17 @@
                   <?php echo form_error('cliente_celular', '<small class="form-text text-danger">','</small>'); ?>
                 </div>
                 <div class="col-md-2">
-                    <label>CEP*</label>
-                    <input type="text" class="form-control form-control-user cep" name="cliente_cep" placeholder="Informe um cep" value="<?php echo $cliente->cliente_cep; ?>">
-                    <?php echo form_error('cliente_cep', '<small class="form-text text-danger">','</small>'); ?>
-                </div>
-                <div class="col-md-4">
-                    <label>Endereço*</label>
-                    <input type="text" class="form-control form-control-user" name="cliente_endereco" placeholder="Informe um endereço" value="<?php echo $cliente->cliente_endereco; ?>">
-                    <?php echo form_error('cliente_endereco', '<small class="form-text text-danger">','</small>'); ?>
+                  <label>CEP*</label>
+                  <input type="text" class="form-control form-control-user cep" name="cliente_cep" placeholder="Informe um cep" value="<?php echo $cliente->cliente_cep; ?>">
+                  <?php echo form_error('cliente_cep', '<small class="form-text text-danger">','</small>'); ?>
                 </div>
               </div>
               <div class="form-group row">
+                <div class="col-md-3">
+                  <label>Endereço*</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_endereco" placeholder="Informe um endereço" value="<?php echo $cliente->cliente_endereco; ?>">
+                  <?php echo form_error('cliente_endereco', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
                 <div class="col-md-1">
                   <label>Número</label>
                   <input type="text" class="form-control form-control-user" name="cliente_numero_endereco" placeholder="Informe número" value="<?php echo $cliente->cliente_numero_endereco; ?>">
@@ -107,12 +116,12 @@
                   <input type="text" class="form-control form-control-user" name="cliente_bairro" placeholder="Informe um bairro" value="<?php echo $cliente->cliente_bairro; ?>">
                   <?php echo form_error('cliente_bairro', '<small class="form-text text-danger">','</small>'); ?>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                   <label>Complemento</label>
                   <input type="text" class="form-control form-control-user" name="cliente_complemento" placeholder="Informe complemento" value="<?php echo $cliente->cliente_complemento; ?>">
                   <?php echo form_error('cliente_complemento', '<small class="form-text text-danger">','</small>'); ?>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label>Cidade*</label>
                     <input type="text" class="form-control form-control-user" name="cliente_cidade" placeholder="Informe uma cidade" value="<?php echo $cliente->cliente_cidade; ?>">
                     <?php echo form_error('cliente_cidade', '<small class="form-text text-danger">','</small>'); ?>
@@ -129,7 +138,39 @@
                     <option value="1" <?php echo ($cliente->cliente_ativo == 1) ? 'selected' : '' ?>>Sim</option>
                   </select> 
                 </div>
-              </div>              
+              </div> 
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label>Ref. Nome</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_nome_ref1" placeholder="Informe nome ref" value="<?php echo $cliente->cliente_nome_ref1; ?>">
+                  <?php echo form_error('cliente_nome_ref1', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
+                <div class="col-md-2">
+                  <label>Tel. referência</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_tel_ref1" placeholder="Informe tel ref" value="<?php echo $cliente->cliente_tel_ref1; ?>">
+                  <?php echo form_error('cliente_tel_ref1', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
+                <div class="col-md-2">
+                  <label>Ref. Nome</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_nome_ref2" placeholder="Informe nome ref" value="<?php echo $cliente->cliente_nome_ref2; ?>">
+                  <?php echo form_error('cliente_nome_ref2', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
+                <div class="col-md-2">
+                  <label>Tel. referência</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_tel_ref2" placeholder="Informe tel ref" value="<?php echo $cliente->cliente_tel_ref2; ?>">
+                  <?php echo form_error('cliente_tel_ref2', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
+                <div class="col-md-2">
+                  <label>Ref. Nome</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_nome_ref3" placeholder="Informe nome ref" value="<?php echo $cliente->cliente_nome_ref3; ?>">
+                  <?php echo form_error('cliente_nome_ref3', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
+                <div class="col-md-2">
+                  <label>Tel. referência</label>
+                  <input type="text" class="form-control form-control-user" name="cliente_tel_ref3" placeholder="Informe tel ref" value="<?php echo $cliente->cliente_tel_ref3; ?>">
+                  <?php echo form_error('cliente_tel_ref3', '<small class="form-text text-danger">','</small>'); ?>
+                </div>
+              </div>       
               <div class="form-group row">
                 <div class="col-md-12">
                  <label>Observação</label>
